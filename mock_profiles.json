@@ -1,0 +1,38 @@
+{
+  "anna_arts": {
+    "username": "anna_arts",
+    "full_name": "Anna · Art & Coffee",
+    "bio": "Художница ☕ Люблю винтаж, артхаус и долгие разговоры о жизни",
+    "followers": 2847,
+    "following": 412,
+    "posts_count": 156,
+    "posts": [
+      {"caption": "Утро в мастерской ☕ #art #painting", "hashtags": ["art","painting","coffee"], "likes": 234, "is_video": false},
+      {"caption": "Кадр из Амели — вечная вдохновение", "hashtags": ["cinema","amelie","french"], "likes": 412, "is_video": false},
+      {"caption": "Винтажный блошиный рынок 📸", "hashtags": ["vintage","film","analog"], "likes": 189, "is_video": false}
+    ]
+  },
+  "max_tech": {
+    "username": "max_tech",
+    "full_name": "Max · Dev & Gaming",
+    "bio": "Software engineer 💻 Sci-fi, киберпанк, настолки",
+    "followers": 1203,
+    "following": 287,
+    "posts_count": 89,
+    "posts": [
+      {"caption": "Новая сборка ПК 🔥 #pcbuild #gaming", "hashtags": ["pcbuild","gaming","tech"], "likes": 156, "is_video": false},
+      {"caption": "Перечитываю Гибсона #cyberpunk", "hashtags": ["scifi","cyberpunk","books"], "likes": 98, "is_video": false}
+    ]
+  },
+  "default": {
+    "username": "demo_user",
+    "full_name": "Demo User",
+    "bio": "Люблю путешествия и хорошее кино",
+    "followers": 500,
+    "following": 300,
+    "posts_count": 50,
+    "posts": [
+      {"caption": "Отличный фильм вчера", "hashtags": ["movies"], "likes": 50, "is_video": false}
+    ]
+  }
+}
