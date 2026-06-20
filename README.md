@@ -314,3 +314,69 @@ IG_PASSWORD=your_instagram_password
 ## 📝 Лицензия
 
 MIT
+---
+
+## 🔄 Переход с Groq на Claude
+
+В проекте две версии: `version-groq/` (бесплатная) и `version-claude/` (платная, выше качество).
+
+### Отличия
+
+| Параметр | Groq (Llama 3.3 70B) | Claude Sonnet 4.5 |
+|---|---|---|
+| Стоимость | Бесплатно | ~$3 за 1M входных токенов |
+| Качество анализа | Хорошее | Выше, лучше ловит нюансы |
+| Стабильность JSON | Иногда срывается | Очень надёжно |
+| Русский язык | Хорошо | Отлично |
+| SDK | `openai` (через Groq endpoint) | `anthropic` |
+| Ключ | `GROQ_API_KEY` | `ANTHROPIC_API_KEY` |
+| Модель в коде | `llama-3.3-70b-versatile` | `claude-sonnet-4-5` |
+
+### Как перейти
+
+1. Получи API-ключ на https://console.anthropic.com/ → раздел **API Keys** → **Create Key**
+2. Привяжи карту и пополни баланс (минимум $5) в разделе **Billing**
+3. Перейди в папку Claude-версии и запусти:
+
+```bash
+cd version-claude
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+4. Открой `.env` и впиши свои ключи:
+```
+ANTHROPIC_API_KEY=sk-ant-твой-ключ
+ANTHROPIC_MODEL=claude-sonnet-4-5
+WATCHMODE_API_KEY=твой-ключ-watchmode
+```
+
+5. Запусти:
+```bash
+python main.py list-profiles
+python main.py scan anna_arts
+```
+
+---
+
+## 🧪 Как выйти из режима песочницы Claude
+
+**Песочница** (Workbench на console.anthropic.com) — это веб-интерфейс для тестов промптов в браузере. Она не нужна для работы приложения.
+
+**Реальная работа** — это вызовы Claude API из твоего Python-кода через ключ `ANTHROPIC_API_KEY`. Они идут с того же баланса, что и Workbench.
+
+### Что нужно сделать, чтобы выйти из песочницы
+
+1. **Закрой вкладку Workbench** — она нужна была только для отладки промптов.
+2. **Убедись, что у тебя есть API-ключ** в `.env` файле (не в браузере).
+3. **Проверь баланс** на console.anthropic.com → **Billing**. Если там $0 — приложение не запустится, будет ошибка `credit balance too low`.
+4. **Отключи Free trial credits**, если они закончились — система автоматически переключится на платный баланс.
+5. **Запусти приложение из терминала** командой `python main.py scan <username>` — это и есть выход из песочницы в продакшен.
+
+### Как понять, что ты уже не в песочнице
+
+- Запросы идут из терминала, а не из браузера.
+- В коде используется `from anthropic import Anthropic` и `client.messages.create(...)`.
+- В консоли Anthropic в разделе **Usage** видны запросы с типом **API** (а не **Workbench**).
